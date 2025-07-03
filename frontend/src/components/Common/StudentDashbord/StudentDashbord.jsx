@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./StudentDashbord.css";
 
-const StudentDashboard = () => {
+const StudentDashboard = ({ user }) => {
   const [teachers, setTeachers] = useState([]);
   const [search, setSearch] = useState("");
   const [filtered, setFiltered] = useState([]);
-
-  const [form, setForm] = useState({
-    teacherId: "",
-    dateTime: "",
-    purpose: "",
-  });
-
-  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -28,114 +22,74 @@ const StudentDashboard = () => {
   }, []);
 
   const handleSearch = (e) => {
-    const val = e.target.value;
+    const val = e.target.value.toLowerCase();
     setSearch(val);
     const filtered = teachers.filter((t) =>
-      t.username.toLowerCase().includes(val.toLowerCase())
+      (t.username || t.email || "").toLowerCase().includes(val)
     );
     setFiltered(filtered);
   };
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleBook = (teacherId) => {
-    setForm({ ...form, teacherId });
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const studentId = localStorage.getItem("studentId");
-
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/api/appointment/book",
-        {
-          studentId,
-          ...form,
-        },
-        { withCredentials: true }
-      );
-      setMessage("✅ " + res.data.message);
-      setForm({ teacherId: "", dateTime: "", purpose: "" });
-    } catch (error) {
-      setMessage("❌ " + (error.response?.data?.message || "Booking failed."));
-    }
+  const handleBook = (teacher) => {
+    navigate("/book-appointment", {
+      state: {
+        studentId: user._id,
+        studentName: user.username,
+        teacherId: teacher._id,
+        teacherName: teacher.username || teacher.email,
+      },
+    });
   };
 
   return (
-    <div className="student-dashboard">
-      <h2>Student Dashboard</h2>
+    <div className="dashboard-container">
+      <h2 className="dashboard-title">🎓 Student Dashboard</h2>
 
-      {/* Search Teachers */}
-      <div className="teacher-search">
-        <h4>Search Teachers</h4>
+      <div className="search-section">
         <input
           type="text"
           className="search-input"
-          placeholder="Search by name..."
+          placeholder="🔍 Search teachers..."
           value={search}
           onChange={handleSearch}
         />
-        <ul className="teacher-list">
-          {filtered.map((teacher) => (
-            <li key={teacher._id} className="teacher-card">
-              <div>
-                <strong>{teacher.username}</strong> — {teacher.subject} (
-                {teacher.department})
-              </div>
-              <button
-                className="book-button"
-                onClick={() => handleBook(teacher._id)}
-              >
-                Book Appointment
-              </button>
-            </li>
-          ))}
-        </ul>
       </div>
 
-      {/* Book Appointment Form */}
-      <div className="appointment-form">
-        <h4>Book Appointment</h4>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="teacherId"
-            placeholder="Teacher ID"
-            className="form-input"
-            value={form.teacherId}
-            readOnly
-          />
-          <input
-            type="datetime-local"
-            name="dateTime"
-            className="form-input"
-            value={form.dateTime}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="purpose"
-            placeholder="Purpose"
-            className="form-input"
-            value={form.purpose}
-            onChange={handleChange}
-            required
-          />
-          <button type="submit" className="submit-button">
-            Book
-          </button>
-        </form>
-        {message && <p className="form-message">{message}</p>}
-      </div>
-
-      <div className="send-message">
-        <h4>Send Messages</h4>
-        <p>Feature coming soon...</p>
+      <div className="table-container">
+        <table className="teacher-table">
+          <thead>
+            <tr>
+              <th>Teacher Name</th>
+              <th>Subject</th>
+              <th>Department</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filtered.map((teacher) => (
+              <tr key={teacher._id}>
+                <td>{teacher.username || teacher.email}</td>
+                <td>{teacher.subject || "-"}</td>
+                <td>{teacher.department || "-"}</td>
+                <td>
+                  <button
+                    className="book-btn"
+                    onClick={() => handleBook(teacher)}
+                  >
+                    Book
+                  </button>
+                </td>
+              </tr>
+            ))}
+            {filtered.length === 0 && (
+              <tr>
+                <td colSpan="4" className="no-data">
+                  No teachers found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import "./Home.css";
 import Admin from "../../components/Common/AdminDashbord/AdminDashbord";
 import Teacher from "../../components/Common/TeacherDashbord/TeacherDashbord";
 import Student from "../../components/Common/StudentDashbord/StudentDashbord";
+import Navbar from "../../components/Navbar/Navbar";
 
 const Home = () => {
   const [user, setUser] = useState(null);
@@ -23,8 +24,8 @@ const Home = () => {
 
   return (
     <div className="home">
+      <Navbar user={user} />
       <h2>Welcome, {user.name || user.username} 👋</h2>
-      <p>Role: {user.role}</p>
 
       {user.role === "admin" && <Admin user={user} />}
 

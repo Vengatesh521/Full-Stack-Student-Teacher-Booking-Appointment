@@ -13,11 +13,14 @@ import Home from "./pages/Home/Home";
 
 // Common Components
 import ProtectedRoute from "./components/Common/ProtectedRoute";
+import BookAppointment from "./pages/BookAppointment/BookAppointment";
 
 // CSS
 import "./App.css";
 
 const App = () => {
+  // Import BookAppointment component
+
   return (
     <Router>
       <Routes>
@@ -31,6 +34,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/book-appointment"
+          element={
+            <ProtectedRoute>
+              <BookAppointment />
             </ProtectedRoute>
           }
         />

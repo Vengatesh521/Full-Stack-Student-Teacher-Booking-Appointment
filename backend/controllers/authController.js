@@ -142,6 +142,27 @@ const authController = {
       res.status(500).json({ message: "Failed to fetch teachers" });
     }
   },
+  async getPendingStudents(req, res) {
+    try {
+      const students = await user
+        .find({ role: "student", isApproved: false })
+        .select("_id username email department");
+      res.status(200).json(students);
+    } catch (error) {
+      console.error("Error fetching students:", error);
+      res.status(500).json({ message: "Failed to fetch students" });
+    }
+  },
+
+  async approveStudent(req, res) {
+    try {
+      await user.findByIdAndUpdate(req.params.id, { isApproved: true });
+      res.status(200).json({ message: "Student approved successfully" });
+    } catch (error) {
+      console.error("Approval error:", error);
+      res.status(500).json({ message: "Failed to approve student" });
+    }
+  },
 };
 
 export default authController;

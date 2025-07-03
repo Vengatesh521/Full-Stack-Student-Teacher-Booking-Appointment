@@ -7,9 +7,15 @@ import User from "../models/user.js";
 // Book a new appointment (Student)
 export const bookAppointment = async (req, res) => {
   try {
-    const { studentId, teacherId, dateTime, purpose } = req.body;
+    const { studentId, teacherId, purpose } = req.body;
 
-    if (!studentId || !teacherId || !dateTime || !purpose) {
+    if (!studentId || !teacherId || !purpose) {
+      console.log("Missing fields:", {
+        studentId,
+        teacherId,
+
+        purpose,
+      });
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -27,7 +33,7 @@ export const bookAppointment = async (req, res) => {
     const newAppointment = new Appointment({
       student: studentId,
       teacher: teacherId,
-      dateTime,
+
       purpose,
     });
 
