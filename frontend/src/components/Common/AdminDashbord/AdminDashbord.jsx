@@ -71,33 +71,37 @@ const AdminDashboard = () => {
         return (
           <div className="admin-section">
             <h3>✅ Approve Students</h3>
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Department</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {students.map((s) => (
-                  <tr key={s._id}>
-                    <td>{s.username}</td>
-                    <td>{s.email}</td>
-                    <td>{s.department}</td>
-                    <td>
-                      <button
-                        className="btn-approve"
-                        onClick={() => handleApprove(s._id)}
-                      >
-                        Approve
-                      </button>
-                    </td>
+            {students.length === 0 ? (
+              <p className="no-data-message">No students to approve.</p>
+            ) : (
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {students.map((s) => (
+                    <tr key={s._id}>
+                      <td>{s.username}</td>
+                      <td>{s.email}</td>
+                      <td>{s.department}</td>
+                      <td>
+                        <button
+                          className="btn-approve"
+                          onClick={() => handleApprove(s._id)}
+                        >
+                          Approve
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         );
 

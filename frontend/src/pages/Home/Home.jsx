@@ -25,7 +25,6 @@ const Home = () => {
   return (
     <div className="home">
       <Navbar user={user} />
-      <h2>Welcome, {user.name || user.username} 👋</h2>
 
       {user.role === "admin" && <Admin user={user} />}
 

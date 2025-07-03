@@ -30,20 +30,26 @@ const AppointmentsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {appointments.map((appt, index) => (
-            <tr key={appt._id}>
-              <td>{index + 1}</td>
-              <td>
-                {appt.student?.username} ({appt.student?.email})
-              </td>
-              <td>
-                {appt.teacher?.username} ({appt.teacher?.email})
-              </td>
-              <td>{appt.teacher?.subject}</td>
-              <td>{new Date(appt.dateTime).toLocaleString()}</td>
-              <td>{appt.purpose}</td>
-            </tr>
-          ))}
+          {appointments.map((appt, index) => {
+            const dateObj = new Date(appt.dateTime);
+            const isValidDate = !isNaN(dateObj.getTime());
+            return (
+              <tr key={appt._id}>
+                <td>{index + 1}</td>
+                <td>
+                  {appt.student?.username} ({appt.student?.email})
+                </td>
+                <td>
+                  {appt.teacher?.username} ({appt.teacher?.email})
+                </td>
+                <td>{appt.teacher?.subject}</td>
+                <td>
+                  {isValidDate ? dateObj.toLocaleString() : "[not scheduled]"}
+                </td>
+                <td>{appt.purpose}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
