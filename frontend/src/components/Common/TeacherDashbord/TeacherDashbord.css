@@ -1,65 +1,129 @@
-.teacher-dashboard {
-  padding: 20px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: "Arial", sans-serif;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+.teacher-dashboard {
   max-width: 1200px;
-  margin: 20px auto;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .teacher-title {
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: bold;
   color: #2c3e50;
-  text-align: center;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.teacher-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #ffffff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.teacher-table th {
-  background-color: #3498db;
-  color: white;
-  padding: 12px;
-  text-align: left;
-  font-size: 16px;
-}
-
-.teacher-table td {
-  padding: 12px;
-  border-bottom: 1px solid #ecf0f1;
-  color: #2c3e50;
-  font-size: 14px;
-}
-
-.teacher-table tr:hover {
-  background-color: #f1f1f1;
-  transition: background-color 0.3s ease;
+.teacher-icon {
+  font-size: 32px;
+  color: #2980b9;
 }
 
 .no-data-message {
-  text-align: center;
+  font-size: 18px;
   color: #7f8c8d;
-  font-size: 16px;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.appointment-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  transition: box-shadow 0.3s ease;
+}
+
+.appointment-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-text {
+  font-size: 14px;
+  color: #34495e;
+  margin-bottom: 12px;
+}
+
+.card-label {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.status-approved {
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+.status-cancelled {
+  background-color: #f2dede;
+  color: #a94442;
+}
+
+.status-pending {
+  background-color: #fcf8e3;
+  color: #8a6d3b;
+}
+
+.card-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-align: center;
+}
+
+.btn-schedule {
+  background-color: #3498db;
+}
+
+.btn-schedule:hover {
+  background-color: #2980b9;
 }
 
 .btn-approve {
   background-color: #2ecc71;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  margin-right: 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .btn-approve:hover {
@@ -68,29 +132,41 @@
 
 .btn-cancel {
   background-color: #e74c3c;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  margin-right: 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .btn-cancel:hover {
   background-color: #c0392b;
 }
 
-.btn-schedule {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 8px 16px;
+.datetime-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.btn-schedule:hover {
-  background-color: #2980b9;
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .teacher-title {
+    font-size: 24px;
+  }
+
+  .teacher-icon {
+    font-size: 28px;
+  }
+
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+
+  .appointment-card {
+    padding: 15px;
+  }
+
+  .btn {
+    padding: 8px;
+    font-size: 12px;
+  }
 }
