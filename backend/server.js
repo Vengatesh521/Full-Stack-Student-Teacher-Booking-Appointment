@@ -19,7 +19,10 @@ connectDB();
 //middleware
 app.use(
   cors({
-    origin: "https://full-stack-student-teacher-booking.onrender.com", // Your React frontend
+    origin: [
+      "https://full-stack-student-teacher-booking.onrender.com",
+      "https://full-stack-student-teacher-booking.vercel.app",
+    ],
     credentials: true,
   })
 );
