@@ -17,12 +17,16 @@ router.put("/edit-teacher/:id", authController.editTeacher);
 router.get("/profile", authenticate, authController.getProfile); // Add middleware here
 // routes/auth.js
 router.post("/logout", (req, res) => {
-  res.clearCookie("token", {
-    httpOnly: true,
-    sameSite: "None",
-    secure: false, // true in production with HTTPS
-  });
-  res.status(200).json({ message: "Logged out successfully" });
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      sameSite: "None",
+      secure: false, // true in production with HTTPS
+    });
+    res.status(200).json({ message: "Logged out successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 export default router;
