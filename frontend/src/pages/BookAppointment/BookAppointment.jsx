@@ -17,7 +17,7 @@ const BookAppointment = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/appointment/book",
+        "https://full-stack-student-teacher-booking.onrender.com/api/appointment/book",
         { studentId, teacherId, ...form },
         { withCredentials: true }
       );

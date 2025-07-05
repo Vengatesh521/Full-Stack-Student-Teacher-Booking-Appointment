@@ -21,9 +21,12 @@ const TeacherDashboard = ({ user }) => {
 
     // Fetch all appointments for this teacher
     axios
-      .get("http://localhost:5000/api/appointment", {
-        withCredentials: true,
-      })
+      .get(
+        "https://full-stack-student-teacher-booking.onrender.com/api/appointment",
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         const filtered = res.data.filter(
           (appt) => appt.teacher?._id?.toString() === user._id.toString()
@@ -34,12 +37,17 @@ const TeacherDashboard = ({ user }) => {
 
     // Fetch all messages received/sent by this teacher
     console.log("user._id:", user._id);
-    console.log(`http://localhost:5000/api/message/${user._id}`);
+    console.log(
+      `https://full-stack-student-teacher-booking.onrender.com/api/message/${user._id}`
+    );
 
     axios
-      .get(`http://localhost:5000/api/message/${user._id}`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://full-stack-student-teacher-booking.onrender.com/api/message/${user._id}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => setMessages(res.data))
       .catch((err) => console.error("Error fetching messages:", err));
   }, [user]);
@@ -50,7 +58,7 @@ const TeacherDashboard = ({ user }) => {
 
     axios
       .patch(
-        `http://localhost:5000/api/appointment/${id}/datetime`,
+        `https://full-stack-student-teacher-booking.onrender.com/api/appointment/${id}/datetime`,
         { dateTime },
         { withCredentials: true }
       )
@@ -68,7 +76,7 @@ const TeacherDashboard = ({ user }) => {
   const handleUpdateStatus = (id, status) => {
     axios
       .patch(
-        `http://localhost:5000/api/appointment/${id}/status`,
+        `https://full-stack-student-teacher-booking.onrender.com/api/appointment/${id}/status`,
         { status },
         { withCredentials: true }
       )

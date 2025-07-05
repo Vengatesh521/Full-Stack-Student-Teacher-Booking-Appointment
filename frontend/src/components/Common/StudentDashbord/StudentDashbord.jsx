@@ -13,9 +13,12 @@ const StudentDashboard = ({ user }) => {
   useEffect(() => {
     if (!user?._id) return;
     axios
-      .get(`http://localhost:5000/api/appointment/student/${user._id}`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://full-stack-student-teacher-booking.onrender.com/api/appointment/student/${user._id}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => setAppointments(res.data))
       .catch((err) =>
         console.error("Error fetching student appointments", err)
@@ -24,9 +27,12 @@ const StudentDashboard = ({ user }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/auth/teachers", {
-        withCredentials: true,
-      })
+      .get(
+        "https://full-stack-student-teacher-booking.onrender.com/api/auth/teachers",
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         setTeachers(res.data);
         setFiltered(res.data);

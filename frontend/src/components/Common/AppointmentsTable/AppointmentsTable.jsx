@@ -7,7 +7,10 @@ const AppointmentsTable = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/appointment", { withCredentials: true })
+      .get(
+        "https://full-stack-student-teacher-booking.onrender.com/api/appointment",
+        { withCredentials: true }
+      )
       .then((res) => setAppointments(res.data))
       .catch((err) => console.error("Failed to load appointments", err));
   }, []);

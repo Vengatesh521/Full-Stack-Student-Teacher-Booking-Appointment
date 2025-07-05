@@ -10,12 +10,18 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/auth/teachers", { withCredentials: true })
+      .get(
+        "https://full-stack-student-teacher-booking.onrender.com/api/auth/teachers",
+        { withCredentials: true }
+      )
       .then((res) => setTeachers(res.data))
       .catch((err) => console.error("Teacher fetch error:", err));
 
     axios
-      .get("http://localhost:5000/api/auth/students", { withCredentials: true })
+      .get(
+        "https://full-stack-student-teacher-booking.onrender.com/api/auth/students",
+        { withCredentials: true }
+      )
       .then((res) => setStudents(res.data))
       .catch((err) => console.error("Student fetch error:", err));
   }, []);
@@ -24,9 +30,12 @@ const AdminDashboard = () => {
     if (!window.confirm("Are you sure you want to delete this teacher?"))
       return;
     axios
-      .delete(`http://localhost:5000/api/auth/delete-teacher/${id}`, {
-        withCredentials: true,
-      })
+      .delete(
+        `https://full-stack-student-teacher-booking.onrender.com/api/auth/delete-teacher/${id}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then(() => {
         setTeachers((prev) => prev.filter((t) => t._id !== id));
       })
@@ -40,7 +49,7 @@ const AdminDashboard = () => {
 
     axios
       .put(
-        `http://localhost:5000/api/auth/edit-teacher/${teacher._id}`,
+        `https://full-stack-student-teacher-booking.onrender.com/api/auth/edit-teacher/${teacher._id}`,
         { username: newName, email: newEmail },
         { withCredentials: true }
       )
@@ -55,7 +64,7 @@ const AdminDashboard = () => {
   const handleApprove = (id) => {
     axios
       .put(
-        `http://localhost:5000/api/auth/approve-student/${id}`,
+        `https://full-stack-student-teacher-booking.onrender.com/api/auth/approve-student/${id}`,
         {},
         { withCredentials: true }
       )

@@ -7,7 +7,10 @@ const ProtectedRoute = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/auth/profile", { withCredentials: true })
+      .get(
+        "https://full-stack-student-teacher-booking.onrender.com/api/auth/profile",
+        { withCredentials: true }
+      )
       .then(() => setIsAuthenticated(true))
       .catch(() => setIsAuthenticated(false));
   }, []);

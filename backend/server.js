@@ -19,7 +19,7 @@ connectDB();
 //middleware
 app.use(
   cors({
-    origin: "http://localhost:5173", // Your React frontend
+    origin: "https://full-stack-student-teacher-booking.onrender.com", // Your React frontend
     credentials: true,
   })
 );
@@ -45,3 +45,4 @@ app.listen(PORT, () => {
 //mongodb+srv://vinex521:55555566@cluster0.vreiufw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
 //mongodb+srv://vinex521:55555566@cluster0.vreiufw.mongodb.net/?
+//https://full-stack-student-teacher-booking.onrender.com

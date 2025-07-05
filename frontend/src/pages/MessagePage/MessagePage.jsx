@@ -15,7 +15,10 @@ const MessagePage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/auth/profile", { withCredentials: true })
+      .get(
+        "https://full-stack-student-teacher-booking.onrender.com/api/auth/profile",
+        { withCredentials: true }
+      )
       .then((res) => setUser(res.data))
       .catch((err) => console.error("Failed to load user profile", err));
   }, []);
@@ -24,16 +27,22 @@ const MessagePage = () => {
     if (!user?._id || !teacherId) return;
 
     axios
-      .get(`http://localhost:5000/api/message/${user._id}/${teacherId}`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://full-stack-student-teacher-booking.onrender.com/api/message/${user._id}/${teacherId}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => setMessages(res.data))
       .catch((err) => console.error("Failed to load messages", err));
 
     axios
-      .get(`http://localhost:5000/api/appointment/teacher/${teacherId}`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://full-stack-student-teacher-booking.onrender.com/api/appointment/teacher/${teacherId}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => setAppointments(res.data))
       .catch((err) => console.error("Failed to load appointments", err));
   }, [user, teacherId]);
@@ -43,7 +52,7 @@ const MessagePage = () => {
 
     axios
       .post(
-        `http://localhost:5000/api/message/send`,
+        `https://full-stack-student-teacher-booking.onrender.com/api/message/send`,
         {
           sender: user._id,
           receiver: teacherId,
