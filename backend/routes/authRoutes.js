@@ -11,6 +11,9 @@ router.get("/teachers", authController.getTeacher);
 router.get("/students", authController.getPendingStudents);
 router.put("/approve-student/:id", authController.approveStudent);
 
+router.delete("/delete-teacher/:id", authController.deleteTeacher);
+router.put("/edit-teacher/:id", authController.editTeacher);
+
 router.get("/profile", authenticate, authController.getProfile); // Add middleware here
 // routes/auth.js
 router.post("/logout", (req, res) => {

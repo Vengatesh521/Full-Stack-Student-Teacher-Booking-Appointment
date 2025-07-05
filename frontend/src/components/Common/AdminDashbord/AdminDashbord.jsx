@@ -20,6 +20,38 @@ const AdminDashboard = () => {
       .catch((err) => console.error("Student fetch error:", err));
   }, []);
 
+  const handleDelete = (id) => {
+    if (!window.confirm("Are you sure you want to delete this teacher?"))
+      return;
+    axios
+      .delete(`http://localhost:5000/api/auth/delete-teacher/${id}`, {
+        withCredentials: true,
+      })
+      .then(() => {
+        setTeachers((prev) => prev.filter((t) => t._id !== id));
+      })
+      .catch((err) => alert("Failed to delete teacher"));
+  };
+
+  const handleEdit = (teacher) => {
+    const newName = prompt("Enter new name", teacher.username);
+    const newEmail = prompt("Enter new email", teacher.email);
+    if (!newName || !newEmail) return;
+
+    axios
+      .put(
+        `http://localhost:5000/api/auth/edit-teacher/${teacher._id}`,
+        { username: newName, email: newEmail },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        setTeachers((prev) =>
+          prev.map((t) => (t._id === teacher._id ? res.data : t))
+        );
+      })
+      .catch((err) => alert(err.message, "Failed to update teacher"));
+  };
+
   const handleApprove = (id) => {
     axios
       .put(
@@ -57,8 +89,18 @@ const AdminDashboard = () => {
                     <td>{t.subject}</td>
                     <td>{t.department}</td>
                     <td>
-                      <button className="btn-edit">Edit</button>
-                      <button className="btn-delete">Delete</button>
+                      <button
+                        className="btn-edit"
+                        onClick={() => handleEdit(t)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="btn-delete"
+                        onClick={() => handleDelete(t._id)}
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 ))}
