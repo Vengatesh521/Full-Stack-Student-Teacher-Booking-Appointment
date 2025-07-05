@@ -25,9 +25,13 @@ const Login = () => {
     }
 
     axios
-      .post("http://localhost:5000/api/auth/login", values, {
-        withCredentials: true,
-      })
+      .post(
+        "https://full-stack-student-teacher-booking.onrender.com/api/auth/login",
+        values,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         setMessage("✅ " + res.data.message);
         setMessageType("success");
@@ -41,7 +45,10 @@ const Login = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/auth/profile", { withCredentials: true })
+      .get(
+        "https://full-stack-student-teacher-booking.onrender.com/api/auth/profile",
+        { withCredentials: true }
+      )
       .then(() => navigate("/"))
       .catch(() => {});
   }, [navigate]);

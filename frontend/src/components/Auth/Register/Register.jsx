@@ -63,7 +63,10 @@ const Register = () => {
     }
 
     axios
-      .post("http://localhost:5000/api/auth/register", values)
+      .post(
+        "https://full-stack-student-teacher-booking.onrender.com/api/auth/register",
+        values
+      )
       .then((res) => {
         setMessage("✅ " + res.data.message);
         setMessageType("success");
