@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [values, setValues] = useState({ username: "", password: "" });
@@ -98,7 +99,7 @@ const Login = () => {
         </div>
         <div className="login-footer">
           <p>
-            Don't have an account? <a href="/register">Register</a>
+            Don't have an account? <Link to="/register">Register</Link>
           </p>
         </div>
       </div>

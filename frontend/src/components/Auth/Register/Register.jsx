@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [values, setValues] = React.useState({
@@ -205,7 +206,7 @@ const Register = () => {
           </form>
         </div>
         <div className="register-footer">
-          Already have an account? <a href="/login">Login here</a>
+          Already have an account? <Link to="/login">Login here</Link>
         </div>
       </div>
     </div>
