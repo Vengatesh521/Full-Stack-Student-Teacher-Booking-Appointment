@@ -19,7 +19,7 @@ router.get("/profile", authenticate, authController.getProfile); // Add middlewa
 router.post("/logout", (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    sameSite: "Lax",
+    sameSite: "None",
     secure: false, // true in production with HTTPS
   });
   res.status(200).json({ message: "Logged out successfully" });
