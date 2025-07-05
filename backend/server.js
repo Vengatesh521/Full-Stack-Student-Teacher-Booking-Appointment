@@ -5,6 +5,7 @@ import authRoutes from "./routes/authroutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import messageRoutes from "./routes/messageRoutes.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use(cookieParser());
 //api endpoints
 app.use("/api/auth", authRoutes);
 app.use("/api/appointment", appointmentRoutes);
+app.use("/api/message", messageRoutes);
 
 //database connection
 

@@ -5,6 +5,7 @@ import {
   getTeacherAppointments,
   updateAppointmentStatus,
   getAllAppointments,
+  updateAppointmentDateTime,
 } from "../controllers/appointmentController.js";
 
 const router = Router();
@@ -20,6 +21,9 @@ router.get("/teacher/:teacherId", getTeacherAppointments);
 
 // Teacher updates appointment status (approve/cancel)
 router.patch("/:appointmentId/status", updateAppointmentStatus);
+
+// update datatime
+router.patch("/:appointmentId/datetime", updateAppointmentDateTime);
 
 // Get all appointments (admin/teacher)
 router.get("/", getAllAppointments);

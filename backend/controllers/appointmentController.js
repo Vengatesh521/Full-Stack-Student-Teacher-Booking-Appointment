@@ -59,7 +59,7 @@ export const getStudentAppointments = async (req, res) => {
     const appointments = await Appointment.find({ student: studentId })
       .populate("teacher", "username email subject")
       .sort({ dateTime: -1 });
-
+    console.log(appointments);
     res.json(appointments);
   } catch (error) {
     console.error("Error fetching student appointments:", error);
@@ -127,6 +127,36 @@ export const getAllAppointments = async (req, res) => {
     res.json(appointments);
   } catch (error) {
     console.error("Error fetching all appointments:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+// Update appointment dateTime (and optionally set status to "scheduled")
+export const updateAppointmentDateTime = async (req, res) => {
+  try {
+    const { appointmentId } = req.params;
+    const { dateTime } = req.body;
+
+    if (!dateTime) {
+      return res.status(400).json({ message: "dateTime is required" });
+    }
+
+    const updated = await Appointment.findByIdAndUpdate(
+      appointmentId,
+      { dateTime },
+      { new: true }
+    );
+
+    if (!updated) {
+      return res.status(404).json({ message: "Appointment not found" });
+    }
+
+    res.json({
+      message: "Appointment date/time updated",
+      appointment: updated,
+    });
+  } catch (error) {
+    console.error("Error updating appointment date/time:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };

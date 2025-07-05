@@ -14,6 +14,7 @@ import Home from "./pages/Home/Home";
 // Common Components
 import ProtectedRoute from "./components/Common/ProtectedRoute";
 import BookAppointment from "./pages/BookAppointment/BookAppointment";
+import MessagePage from "./pages/MessagePage/MessagePage";
 
 // CSS
 import "./App.css";
@@ -42,6 +43,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <BookAppointment />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/message"
+          element={
+            <ProtectedRoute>
+              <MessagePage />
             </ProtectedRoute>
           }
         />

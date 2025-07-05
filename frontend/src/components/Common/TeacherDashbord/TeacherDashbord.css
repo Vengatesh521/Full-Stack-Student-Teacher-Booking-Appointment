@@ -5,15 +5,15 @@
 }
 
 body {
-  font-family: "Arial", sans-serif;
-  background-color: #f4f4f9;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
   color: #333;
 }
 
 .teacher-dashboard {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  margin: auto;
+  padding: 30px 20px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -21,18 +21,13 @@ body {
 }
 
 .teacher-title {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: bold;
   color: #2c3e50;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-.teacher-icon {
-  font-size: 32px;
-  color: #2980b9;
+  gap: 10px;
 }
 
 .no-data-message {
@@ -44,74 +39,73 @@ body {
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
   width: 100%;
+  margin-bottom: 30px;
 }
 
-.appointment-card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+.appointment-card,
+.msg-preview-card {
+  background: #fff;
+  border-radius: 10px;
   padding: 20px;
-  transition: box-shadow 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
 }
 
-.appointment-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.appointment-card:hover,
+.msg-preview-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
 .card-text {
-  font-size: 14px;
+  font-size: 15px;
+  margin-bottom: 10px;
   color: #34495e;
-  margin-bottom: 12px;
-}
-
-.card-label {
-  font-weight: bold;
-  color: #2c3e50;
 }
 
 .status-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
   display: inline-block;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 500;
   text-transform: capitalize;
 }
 
 .status-approved {
-  background-color: #dff0d8;
-  color: #3c763d;
+  background-color: #e0f8e9;
+  color: #2e7d32;
 }
 
 .status-cancelled {
-  background-color: #f2dede;
-  color: #a94442;
+  background-color: #fdecea;
+  color: #c0392b;
 }
 
 .status-pending {
-  background-color: #fcf8e3;
-  color: #8a6d3b;
+  background-color: #fff8e1;
+  color: #f39c12;
 }
 
 .card-buttons {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
 }
 
 .btn {
   flex: 1;
   padding: 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   font-size: 14px;
-  color: #fff;
+  color: white;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  text-align: center;
+  transition: background-color 0.3s ease;
 }
 
 .btn-schedule {
@@ -123,11 +117,11 @@ body {
 }
 
 .btn-approve {
-  background-color: #2ecc71;
+  background-color: #27ae60;
 }
 
 .btn-approve:hover {
-  background-color: #27ae60;
+  background-color: #1e8449;
 }
 
 .btn-cancel {
@@ -141,32 +135,66 @@ body {
 .datetime-input {
   width: 100%;
   padding: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-size: 14px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
-/* Responsive adjustments */
+.msg-section-title {
+  font-size: 22px;
+  margin-bottom: 15px;
+  align-self: flex-start;
+  color: #2c3e50;
+}
+
+.messages-preview {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.msg-preview-card p {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #2d3436;
+}
+
+.msg-preview-card small {
+  display: block;
+  font-size: 12px;
+  color: #7f8c8d;
+  margin-top: 8px;
+}
+
+.msg-btn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #8e44ad;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.msg-btn:hover {
+  background-color: #6c3483;
+}
+
+/* Responsive */
 @media (max-width: 600px) {
   .teacher-title {
     font-size: 24px;
   }
 
-  .teacher-icon {
-    font-size: 28px;
-  }
-
-  .card-container {
+  .card-container,
+  .messages-preview {
     grid-template-columns: 1fr;
   }
 
-  .appointment-card {
-    padding: 15px;
-  }
-
   .btn {
-    padding: 8px;
-    font-size: 12px;
+    font-size: 13px;
   }
 }
