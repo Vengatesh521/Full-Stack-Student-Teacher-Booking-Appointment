@@ -22,6 +22,7 @@ app.use(
     origin: [
       "https://full-stack-student-teacher-booking.onrender.com",
       "https://full-stack-student-teacher-booking.vercel.app",
+      "https://full-stack-student-teacher-booking.onrender.com/api/auth/profile",
     ],
     credentials: true,
   })
