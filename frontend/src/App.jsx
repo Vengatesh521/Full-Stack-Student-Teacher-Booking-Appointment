@@ -30,7 +30,14 @@ const App = () => {
         <Route path="/register" element={<Register />} />
 
         {/* Protected Route */}
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/book-appointment"
           element={
