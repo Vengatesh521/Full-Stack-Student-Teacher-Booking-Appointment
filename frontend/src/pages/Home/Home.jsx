@@ -7,7 +7,7 @@ import Student from "../../components/Common/StudentDashbord/StudentDashbord";
 import Navbar from "../../components/Navbar/Navbar";
 
 const Home = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(true);
 
   useEffect(() => {
     axios
