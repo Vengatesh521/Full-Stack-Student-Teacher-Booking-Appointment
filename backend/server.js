@@ -21,7 +21,7 @@ app.use(
   cors({
     origin: [
       "https://full-stack-student-teacher-booking.onrender.com",
-      "https://full-stack-student-teacher-booking.vercel.app",
+      "https://full-stack-student-teacher-booking-b404.onrender.com",
     ],
     credentials: true,
   })
