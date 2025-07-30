@@ -111,7 +111,7 @@ const authController = {
       res.json(foundUser);
     } catch (error) {
       console.error("Profile error:", error);
-      res.status(500).json({ message: "Error fetching profile" });
+      res.status(500).json({ message: `Error fetching profile ${error}` });
     }
   },
 
