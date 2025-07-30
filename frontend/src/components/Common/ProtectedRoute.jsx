@@ -15,9 +15,9 @@ const ProtectedRoute = ({ children }) => {
       .catch(() => setIsAuthenticated(false));
   }, []);
 
-  // if (isAuthenticated === false) {
-  //   return <div>Loading...</div>; // or spinner
-  // }
+  if (isAuthenticated === null) {
+    return <div>Loading...</div>; // or spinner
+  }
 
   return isAuthenticated ? children : <Navigate to="/login" replace />;
 };
