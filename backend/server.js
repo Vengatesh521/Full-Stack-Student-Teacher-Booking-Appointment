@@ -22,6 +22,7 @@ app.use(
     origin: [
       "https://full-stack-student-teacher-booking.onrender.com",
       "https://full-stack-student-teacher-booking-b404.onrender.com",
+      "http://localhost:5173/",
     ],
     credentials: true,
   })
