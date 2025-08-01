@@ -1,81 +1,171 @@
-/* Navbar.css */
-
-.navbar {
+/* --- Base container --- */
+.navbar-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(to right, #3498db, #2ecc71);
+  padding: 12px 30px;
+  z-index: 1000;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: linear-gradient(90deg, #6366f1, #4f46e5);
-  padding: 16px 32px;
-  border-radius: 8px;
-  color: #fff;
-  font-family: "Segoe UI", sans-serif;
-  position: relative;
-  margin-bottom: 24px;
+  gap: 1rem;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: padding 0.2s ease;
+}
+
+.brand {
+  font-weight: 600;
 }
 
 .navbar-left {
-  font-size: 1.5rem;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  user-select: none;
-}
-
-.navbar-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  color: #fff;
   font-size: 1.2rem;
-  font-weight: 600;
-  background-color: #a5b4fc;
-  color: #1e1b4b;
-  padding: 6px 14px;
-  border-radius: 999px;
+  font-weight: bold;
+  user-select: none;
+  gap: 4px;
 }
 
+.navbar-left:hover {
+  opacity: 0.95;
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
+}
+
+/* Center role badge */
+.navbar-middle {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.role-center {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-block;
+  backdrop-filter: blur(6px);
+}
+
+/* Right side */
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
 .username {
+  color: #fff;
   font-size: 0.95rem;
-  color: #e0e7ff;
-  background-color: rgba(255, 255, 255, 0.15);
-  padding: 6px 10px;
-  border-radius: 6px;
+  white-space: nowrap;
 }
 
 .logout-button {
-  background-color: #ef4444;
-  color: white;
+  background: rgba(255, 255, 255, 0.15);
   border: none;
   padding: 8px 14px;
-  border-radius: 8px;
-  font-weight: 600;
+  border-radius: 999px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  color: #fff;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.25s ease, transform 0.2s ease;
 }
 
 .logout-button:hover {
-  background-color: #dc2626;
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
+/* Hamburger/menu toggle */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.nav-icon {
+  width: 26px;
+  height: 26px;
+  color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.menu-toggle:hover .nav-icon {
+  transform: scale(1.1);
+}
+
+/* --- Responsive for mobile --- */
+@media (max-width: 900px) {
+  .navbar-container {
+    padding: 12px 18px;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
-  .navbar-center {
-    position: static;
-    transform: none;
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar-middle,
+  .navbar-right {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .navbar-middle.open,
+  .navbar-right.open {
+    display: flex;
+    animation: fadeSlideDown 0.35s ease-out;
+    background: linear-gradient(to right, #3498db, #2ecc71);
+    padding: 10px 16px;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .role-center {
+    width: 100%;
+    text-align: left;
   }
 
   .navbar-right {
-    flex-direction: column;
-    align-items: center;
+    gap: 6px;
+  }
+
+  .logout-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* small animation */
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
