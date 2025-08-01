@@ -9,11 +9,10 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  justify-content: space-between;
-  flex-wrap: nowrap;
+  justify-content: flex-start;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  transition: padding 0.2s ease;
+  flex-wrap: nowrap;
 }
 
 .brand {
@@ -37,9 +36,12 @@
   transition: transform 0.2s ease;
 }
 
+.spacer {
+  flex: 1;
+}
+
 /* Center role badge */
 .navbar-middle {
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,83 +91,22 @@
   transform: translateY(-1px);
 }
 
-/* Hamburger/menu toggle */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  padding: 4px;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.nav-icon {
-  width: 26px;
-  height: 26px;
-  color: #fff;
-  transition: transform 0.2s ease;
-}
-
-.menu-toggle:hover .nav-icon {
-  transform: scale(1.1);
-}
-
-/* --- Responsive for mobile --- */
-@media (max-width: 900px) {
+/* --- Responsive: small devices only show portal + logout --- */
+@media (max-width: 768px) {
   .navbar-container {
-    padding: 12px 18px;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .navbar-middle,
-  .navbar-right {
-    width: 100%;
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    margin-top: 8px;
-  }
-
-  .navbar-middle.open,
-  .navbar-right.open {
-    display: flex;
-    animation: fadeSlideDown 0.35s ease-out;
-    background: linear-gradient(to right, #3498db, #2ecc71);
     padding: 10px 16px;
-    border-radius: 8px;
-    width: 100%;
-    box-sizing: border-box;
+    gap: 0.5rem;
   }
 
-  .role-center {
-    width: 100%;
-    text-align: left;
+  .navbar-middle {
+    display: none;
+  }
+
+  .username {
+    display: none;
   }
 
   .navbar-right {
-    gap: 6px;
-  }
-
-  .logout-button {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-/* small animation */
-@keyframes fadeSlideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+    margin-left: auto;
   }
 }
