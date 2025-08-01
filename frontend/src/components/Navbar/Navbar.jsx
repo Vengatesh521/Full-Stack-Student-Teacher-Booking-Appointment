@@ -28,7 +28,6 @@ const Navbar = ({ user }) => {
   };
 
   useEffect(() => {
-    // placeholder if future nav cleanup needed
     return () => {};
   }, []);
 
@@ -50,6 +49,7 @@ const Navbar = ({ user }) => {
       <div className="spacer" />
 
       <div className="navbar-right">
+        {/* username hidden on small; kept for larger */}
         <span className="username">👤 {user?.username || user?.name}</span>
         <button className="logout-button" onClick={handleLogout}>
           🚪 Logout

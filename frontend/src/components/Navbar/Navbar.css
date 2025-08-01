@@ -80,13 +80,12 @@
   transform: translateY(-1px);
 }
 
-/* small screen: only show brand and logout button */
+/* small screen: only show brand, role, and logout (username hidden) */
 @media (max-width: 768px) {
-  .navbar-middle {
-    display: none;
+  .navbar-container {
+    padding: 10px 16px;
   }
   .username {
     display: none;
   }
-  /* keep brand on left, logout on right */
 }
