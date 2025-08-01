@@ -1,22 +1,16 @@
-/* --- Base container --- */
+/* base navbar */
 .navbar-container {
   position: fixed;
   top: 0;
   width: 100%;
   background: linear-gradient(to right, #3498db, #2ecc71);
-  padding: 12px 30px;
+  padding: 12px 20px;
   z-index: 1000;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  justify-content: flex-start;
+  gap: 0.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  flex-wrap: nowrap;
-}
-
-.brand {
-  font-weight: 600;
 }
 
 .navbar-left {
@@ -26,13 +20,13 @@
   color: #fff;
   font-size: 1.2rem;
   font-weight: bold;
-  user-select: none;
   gap: 4px;
+  user-select: none;
 }
 
 .navbar-left:hover {
-  opacity: 0.95;
-  transform: scale(1.02);
+  opacity: 0.9;
+  transform: scale(1.01);
   transition: transform 0.2s ease;
 }
 
@@ -40,36 +34,11 @@
   flex: 1;
 }
 
-/* Center role badge */
-.navbar-middle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.role-center {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 6px 12px;
-  border-radius: 20px;
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: 500;
-  display: inline-block;
-  backdrop-filter: blur(6px);
-}
-
-/* Right side */
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   flex-shrink: 0;
-}
-
-.username {
-  color: #fff;
-  font-size: 0.95rem;
-  white-space: nowrap;
 }
 
 .logout-button {
@@ -91,22 +60,11 @@
   transform: translateY(-1px);
 }
 
-/* --- Responsive: small devices only show portal + logout --- */
+/* On small screens: only brand and logout button (already minimal) */
+/* If any future extra items existed, they'd be hidden here */
 @media (max-width: 768px) {
   .navbar-container {
     padding: 10px 16px;
-    gap: 0.5rem;
   }
-
-  .navbar-middle {
-    display: none;
-  }
-
-  .username {
-    display: none;
-  }
-
-  .navbar-right {
-    margin-left: auto;
-  }
+  /* nothing else needed since we only have brand + logout */
 }

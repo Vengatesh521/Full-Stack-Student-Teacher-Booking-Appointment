@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Navbar.css";
 
 const Navbar = ({ user }) => {
   const navigate = useNavigate();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const roleLabel = {
-    admin: "🛡️ Admin",
-    teacher: "👨‍🏫 Teacher",
-    student: "🎓 Student",
-  }[user?.role];
 
   const handleLogout = async () => {
     try {
@@ -28,10 +22,10 @@ const Navbar = ({ user }) => {
     }
   };
 
-  // close menu on navigation (kept for expandability)
+  // ensure any future nav effect can close things if needed
   useEffect(() => {
-    const unlisten = () => setIsMenuOpen(false);
-    return unlisten;
+    // placeholder for cleanup if expanded later
+    return () => {};
   }, []);
 
   return (
@@ -40,23 +34,14 @@ const Navbar = ({ user }) => {
         className="navbar-left"
         onClick={() => {
           navigate("/");
-          setIsMenuOpen(false);
         }}
       >
         🎓 <span className="brand">College Portal</span>
       </div>
 
-      {/* role badge: hidden on small */}
-      {roleLabel && (
-        <div className="navbar-middle">
-          <span className="role-center">{roleLabel}</span>
-        </div>
-      )}
-
       <div className="spacer" />
 
       <div className="navbar-right">
-        <span className="username">👤 {user?.username || user?.name}</span>
         <button className="logout-button" onClick={handleLogout}>
           🚪 Logout
         </button>
