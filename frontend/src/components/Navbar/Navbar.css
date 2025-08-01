@@ -24,10 +24,24 @@
   user-select: none;
 }
 
-.navbar-left:hover {
-  opacity: 0.9;
-  transform: scale(1.01);
-  transition: transform 0.2s ease;
+.brand {
+  font-weight: 600;
+}
+
+.navbar-middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.role-center {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  backdrop-filter: blur(6px);
 }
 
 .spacer {
@@ -37,8 +51,14 @@
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   flex-shrink: 0;
+}
+
+.username {
+  color: #fff;
+  font-size: 0.95rem;
+  white-space: nowrap;
 }
 
 .logout-button {
@@ -60,11 +80,13 @@
   transform: translateY(-1px);
 }
 
-/* On small screens: only brand and logout button (already minimal) */
-/* If any future extra items existed, they'd be hidden here */
+/* small screen: only show brand and logout button */
 @media (max-width: 768px) {
-  .navbar-container {
-    padding: 10px 16px;
+  .navbar-middle {
+    display: none;
   }
-  /* nothing else needed since we only have brand + logout */
+  .username {
+    display: none;
+  }
+  /* keep brand on left, logout on right */
 }
