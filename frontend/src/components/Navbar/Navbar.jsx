@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Navbar.css";
 
 const Navbar = ({ user }) => {
   const navigate = useNavigate();
-  const roleLabel = {
-    admin: "🛡️ Admin",
-    teacher: "👨‍🏫 Teacher",
-    student: "🎓 Student",
-  }[user?.role];
 
   const handleLogout = async () => {
     try {
@@ -27,29 +22,25 @@ const Navbar = ({ user }) => {
     }
   };
 
-  useEffect(() => {
-    return () => {};
-  }, []);
-
   return (
-    <nav className="navbar-container">
-      <div
-        className="navbar-left"
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        🎓 <span className="brand">College Portal</span>
+    <nav className="navbar">
+      <div className="navbar-left" onClick={() => navigate("/")}>
+        🎓 College Portal
       </div>
 
-      <div className="navbar-middle">
-        {roleLabel && <span className="role-center">{roleLabel}</span>}
+      <div className="navbar-center">
+        {user?.role === "admin" && (
+          <span className="role-center">🛡️ Admin</span>
+        )}
+        {user?.role === "teacher" && (
+          <span className="role-center">👨‍🏫 Teacher</span>
+        )}
+        {user?.role === "student" && (
+          <span className="role-center">🎓 Student</span>
+        )}
       </div>
-
-      <div className="spacer" />
 
       <div className="navbar-right">
-        {/* username hidden on small; kept for larger */}
         <span className="username">👤 {user?.username || user?.name}</span>
         <button className="logout-button" onClick={handleLogout}>
           🚪 Logout

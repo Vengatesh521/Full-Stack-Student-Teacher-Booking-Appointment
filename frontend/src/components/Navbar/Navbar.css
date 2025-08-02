@@ -1,92 +1,81 @@
-/* base navbar */
-.navbar-container {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: linear-gradient(to right, #3498db, #2ecc71);
-  padding: 12px 20px;
-  z-index: 1000;
+/* Navbar.css */
+
+.navbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  align-items: center;
+  background: linear-gradient(90deg, #6366f1, #4f46e5);
+  padding: 16px 32px;
+  border-radius: 8px;
+  color: #fff;
+  font-family: "Segoe UI", sans-serif;
+  position: relative;
+  margin-bottom: 24px;
 }
 
 .navbar-left {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  color: #fff;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  gap: 4px;
+  cursor: pointer;
   user-select: none;
 }
 
-.brand {
+.navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
   font-weight: 600;
-}
-
-.navbar-middle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.role-center {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 6px 12px;
-  border-radius: 20px;
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: 500;
-  backdrop-filter: blur(6px);
-}
-
-.spacer {
-  flex: 1;
+  background-color: #a5b4fc;
+  color: #1e1b4b;
+  padding: 6px 14px;
+  border-radius: 999px;
 }
 
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
+  gap: 16px;
 }
 
 .username {
-  color: #fff;
   font-size: 0.95rem;
-  white-space: nowrap;
+  color: #e0e7ff;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 6px 10px;
+  border-radius: 6px;
 }
 
 .logout-button {
-  background: rgba(255, 255, 255, 0.15);
+  background-color: #ef4444;
+  color: white;
   border: none;
   padding: 8px 14px;
-  border-radius: 999px;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
-  color: #fff;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: background 0.25s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease;
 }
 
 .logout-button:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-1px);
+  background-color: #dc2626;
 }
 
-/* small screen: only show brand, role, and logout (username hidden) */
+/* Responsive */
 @media (max-width: 768px) {
-  .navbar-container {
-    padding: 10px 16px;
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
   }
-  .username {
-    display: none;
+
+  .navbar-center {
+    position: static;
+    transform: none;
+  }
+
+  .navbar-right {
+    flex-direction: column;
+    align-items: center;
   }
 }
